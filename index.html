@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLUBAR Consulting | Hospitality Growth</title>
+<meta name="description" content="Marketing, trade marketing and operations for clubs, bars and restaurants, from people who own and run them. New York, Mexico City and Madrid.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --ink: #0F0E0C;
+  --ink-2: #1A1815;
+  --ink-3: #26231F;
+  --cream: #F4F0E8;
+  --paper: #FBF9F4;
+  --line: #E2DCD0;
+  --line-dark: #36322C;
+  --muted: #6E675C;
+  --muted-dark: #A39B8D;
+  --brass: #C9A15B;
+  --brass-deep: #8C6A2E;
+  --wine: #6B1F2A;
+
+  --display: "Unbounded", "Monument Extended", "Arial Black", sans-serif;
+  --sans: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+  --wrap: 1240px;
+  --gutter: clamp(16px, 4vw, 40px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--sans); font-size: 17px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+h1, h2, h3, p { margin: 0; }
+h1, h2 { text-wrap: balance; }
+.hero h1, .sec-head h2, .about-lead, .core-feature h3, .contact h2 { font-family: var(--display); text-transform: uppercase; font-weight: 600; letter-spacing: -.02em; }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* Language toggle */
+html[lang="en"] [lang="es"], html[lang="es"] [lang="en"] { display: none !important; }
+
+.eyebrow {
+  font-family: var(--display); font-size: 11px; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--brass-deep);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: currentColor; }
+.dark .eyebrow { color: var(--brass); }
+em { font-style: normal; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 26px; border-radius: 999px; font-weight: 500; font-size: 12.5px;
+  transition: transform .2s ease, background .2s ease, color .2s ease;
+  border: 1px solid transparent; cursor: pointer; font-family: var(--display); text-transform: uppercase; letter-spacing: .06em;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-brass { background: var(--brass); color: var(--ink); }
+.btn-brass:hover { background: #D8B373; }
+.btn-ghost { border-color: rgba(244,240,232,.3); color: var(--cream); }
+.btn-ghost:hover { border-color: var(--cream); }
+.btn-ink { background: var(--ink); color: var(--cream); }
+.btn .arr { transition: transform .2s ease; }
+.btn:hover .arr { transform: translateX(3px); }
+
+/* Nav */
+.nav {
+  position: fixed; inset: 0 0 auto; z-index: 50;
+  transition: background .3s ease, border-color .3s ease;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled { background: rgba(15,14,12,.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line-dark); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 20px; }
+.logo { color: var(--cream); display: flex; align-items: baseline; gap: 10px; }
+.logo b { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: .12em; }
+.logo span { font-family: var(--display); font-size: 9px; letter-spacing: .12em; color: var(--muted-dark); text-transform: uppercase; }
+.nav-links { display: flex; gap: 30px; color: var(--cream); font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 11.5px; font-weight: 500; }
+.nav-links a { opacity: .75; transition: opacity .2s; }
+.nav-links a:hover { opacity: 1; }
+.nav-right { display: flex; align-items: center; gap: 14px; }
+.lang {
+  display: flex; border: 1px solid var(--line-dark); border-radius: 999px; padding: 3px;
+  font-family: var(--display); font-size: 11px;
+}
+.lang button {
+  background: none; border: 0; color: var(--muted-dark); padding: 5px 10px; border-radius: 999px;
+  cursor: pointer; font: inherit; letter-spacing: .08em;
+}
+.lang button[aria-pressed="true"] { background: var(--cream); color: var(--ink); }
+.nav .btn { padding: 11px 18px; font-size: 11.5px; }
+.burger { display: none; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line-dark); background: none; cursor: pointer; position: relative; }
+.burger span { position: absolute; left: 12px; right: 12px; height: 1.5px; background: var(--cream); transition: transform .25s ease, top .25s ease; }
+.burger span:first-child { top: 16px; } .burger span:last-child { top: 24px; }
+.nav.open .burger span:first-child { top: 20px; transform: rotate(45deg); }
+.nav.open .burger span:last-child { top: 20px; transform: rotate(-45deg); }
+.mobile-menu { display: none; }
+.nav.open { background: var(--ink); border-color: var(--line-dark); }
+.nav.open .mobile-menu { display: flex; flex-direction: column; padding: 8px var(--gutter) 28px; }
+.mobile-menu a:not(.btn) { color: var(--cream); font-family: var(--display); text-transform: uppercase; font-size: 20px; font-weight: 500; padding: 16px 0; border-bottom: 1px solid var(--line-dark); }
+.mobile-menu .btn { margin-top: 24px; justify-content: center; padding: 16px 26px; font-size: 12.5px; }
+
+/* Hero */
+.hero {
+  background: var(--ink); color: var(--cream); position: relative; overflow: hidden;
+  padding: 150px 0 0; min-height: 100vh; display: flex; flex-direction: column;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 85% 20%, rgba(201,161,91,.18), transparent 70%),
+    radial-gradient(50% 60% at 0% 100%, rgba(107,31,42,.35), transparent 70%);
+}
+.hero .wrap { position: relative; flex: 1; display: flex; flex-direction: column; }
+.hero h1 {
+  font-family: var(--sans); font-weight: 600;
+  font-size: clamp(32px, 5.6vw, 80px); line-height: 1.04;
+  margin: 28px 0 32px; max-width: 16ch;
+}
+.hero h1 em { color: var(--brass); }
+.hero-sub { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
+.hero-sub p { font-size: clamp(17px, 1.5vw, 20px); color: #CFC7B9; max-width: 560px; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.cities {
+  margin-top: auto; padding-top: 72px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line-dark);
+}
+.city { padding: 26px 0 32px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.city + .city { border-left: 1px solid var(--line-dark); padding-left: 28px; }
+.city h3 { font-family: var(--display); font-weight: 500; text-transform: uppercase; font-size: clamp(15px, 1.4vw, 20px); line-height: 1.2; letter-spacing: .01em; }
+.city small { display: block; font-family: var(--display); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-dark); margin-top: 6px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Sections */
+section { padding: clamp(80px, 11vw, 140px) 0; }
+.sec-head { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; margin-bottom: 64px; align-items: end; }
+.sec-head h2 { font-size: clamp(24px, 3vw, 42px); line-height: 1.12; }
+.sec-head p { color: var(--muted); font-size: 18px; max-width: 560px; }
+.dark { background: var(--ink); color: var(--cream); }
+.dark .sec-head p { color: var(--muted-dark); }
+
+/* About pillars */
+.about-lead { font-size: clamp(22px, 2.5vw, 34px); line-height: 1.2; max-width: 24ch; }
+.about-lead em { color: var(--brass-deep); }
+.about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: start; }
+.about-grid > p { color: var(--muted); font-size: 18px; padding-top: 10px; }
+.pillars { margin-top: 72px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+.pillar { padding: 32px 28px 0 0; }
+.pillar + .pillar { padding-left: 28px; border-left: 1px solid var(--line); }
+.pillar .n { font-family: var(--display); font-size: 12px; color: var(--brass-deep); }
+.pillar h3 { font-size: 22px; font-weight: 600; margin: 14px 0 8px; letter-spacing: -.01em; }
+.pillar p { color: var(--muted); font-size: 15px; }
+
+/* Core: social */
+.core { background: var(--cream); }
+.core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 36px;
+}
+.core-feature {
+  background: var(--ink); color: var(--cream); border: 0; border-radius: 20px; padding: 44px;
+  display: flex; flex-direction: column; justify-content: space-between; min-height: 520px;
+  position: relative; overflow: hidden;
+}
+.core-feature::after {
+  content: ""; position: absolute; width: 420px; height: 420px; right: -140px; bottom: -160px;
+  border-radius: 50%; border: 1px solid rgba(201,161,91,.35);
+  box-shadow: 0 0 0 40px rgba(201,161,91,.05), 0 0 0 80px rgba(201,161,91,.03);
+}
+.core-feature h3 { font-size: clamp(22px, 2.3vw, 32px); line-height: 1.15; margin-top: 20px; }
+.core-feature h3 em { color: var(--brass); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; position: relative; z-index: 1; }
+.tag { border: 1px solid var(--line-dark); border-radius: 999px; padding: 8px 16px; font-size: 14px; color: #DCD4C6; }
+.deliverables li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.deliverables li:first-child { padding-top: 0; }
+.deliverables li:last-child { border-bottom: 0; padding-bottom: 0; }
+.deliverables .n { font-family: var(--display); font-size: 12px; color: var(--brass-deep); padding-top: 4px; }
+.deliverables h4 { margin: 0 0 2px; font-size: 17px; font-weight: 600; }
+.deliverables p { color: var(--muted); font-size: 15px; }
+
+/* 360 practice areas */
+.areas { border-top: 1px solid var(--line-dark); }
+.area { display: grid; grid-template-columns: 90px 1fr 1.6fr; gap: 32px; padding: 48px 0; border-bottom: 1px solid var(--line-dark); }
+.area .n { font-family: var(--display); font-size: 13px; color: var(--brass); padding-top: 8px; }
+.area h3 { font-family: var(--display); font-weight: 600; text-transform: uppercase; font-size: clamp(18px, 1.9vw, 26px); line-height: 1.2; letter-spacing: -.01em; }
+.area-list { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 36px; }
+.area-list h4 { margin: 0 0 6px; font-size: 16px; font-weight: 600; color: var(--cream); }
+.area-list p { font-size: 14.5px; color: var(--muted-dark); line-height: 1.55; }
+.area:hover h3 { color: var(--brass); }
+.area h3 { transition: color .3s; }
+
+/* Statement quote */
+.model-quote {
+  margin-top: 64px; text-align: center; font-family: var(--display);
+  font-size: clamp(30px, 4vw, 54px); line-height: 1.1; letter-spacing: -.01em; max-width: 22ch; margin-left: auto; margin-right: auto;
+}
+.model-quote em { color: var(--brass-deep); }
+
+/* Process */
+.process { background: var(--cream); }
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: s; }
+.step { padding: 0 28px 0 0; position: relative; }
+.step + .step { padding-left: 28px; border-left: 1px solid var(--line); }
+.step .n { font-family: var(--display); font-weight: 600; font-size: 48px; line-height: 1; color: var(--brass-deep); }
+.step h3 { font-size: 20px; font-weight: 600; margin: 20px 0 8px; }
+.step p { color: var(--muted); font-size: 15px; }
+
+/* Contact */
+.contact { background: var(--ink); color: var(--cream); position: relative; overflow: hidden; }
+.contact::before { content: ""; position: absolute; inset: 0; background: radial-gradient(50% 70% at 100% 0%, rgba(201,161,91,.16), transparent 70%); pointer-events: none; }
+.contact .wrap { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.contact h2 { font-size: clamp(30px, 4vw, 56px); line-height: 1.08; margin: 24px 0; }
+.contact h2 em { color: var(--brass); }
+.contact-lead { color: var(--muted-dark); font-size: 18px; max-width: 460px; }
+form { background: var(--ink-2); border: 1px solid var(--line-dark); border-radius: 20px; padding: 36px; display: grid; gap: 18px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+label { display: grid; gap: 8px; font-size: 13px; color: var(--muted-dark); font-weight: 500; }
+input, select, textarea {
+  font: inherit; font-size: 16px; color: var(--cream); background: var(--ink-3);
+  border: 1px solid var(--line-dark); border-radius: 12px; padding: 13px 14px; width: 100%;
+}
+textarea { min-height: 110px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--brass); }
+form .btn { justify-content: center; width: 100%; margin-top: 6px; }
+.form-note { font-size: 12.5px; color: var(--muted-dark); text-align: center; }
+
+footer { background: var(--ink); color: var(--muted-dark); border-top: 1px solid var(--line-dark); padding: 40px 0; font-size: 14px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: center; }
+footer .logo b { font-size: 16px; }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+/* Statement */
+.statement { padding: clamp(80px, 10vw, 130px) 0; text-align: center; }
+.venues { margin: 36px auto 0; max-width: 1100px; font-family: var(--display); font-weight: 500; text-transform: uppercase; font-size: clamp(15px, 1.75vw, 24px); line-height: 1.8; letter-spacing: .01em; text-wrap: pretty; }
+.venues .venue { white-space: nowrap; }
+.venues .dot { color: var(--brass-deep); margin-left: .1em; }
+.process .sec-head { margin-bottom: 48px; }
+
+/* Compare */
+.compare { margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.compare-col { border: 1px solid var(--line); border-radius: 20px; padding: 32px 36px; }
+.compare-col h3 { font-size: 12px; font-family: var(--display); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+.compare-col li { padding: 14px 0 14px 32px; border-top: 1px solid var(--line); position: relative; color: var(--muted); }
+.compare-col li::before { content: "×"; position: absolute; left: 4px; top: 13px; color: #A8A091; }
+.compare-col.us { background: var(--ink); border-color: var(--ink); }
+.compare-col.us h3 { color: var(--brass); letter-spacing: .14em; }
+.compare-col.us li { color: var(--cream); border-color: var(--line-dark); font-weight: 500; }
+.compare-col.us li::before { content: "✓"; color: var(--brass); }
+
+/* Trade */
+.trade h2 em { color: var(--brass); }
+.trade-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark); border-radius: 20px; overflow: hidden; }
+.trade-card { background: var(--ink); padding: 36px; transition: background .3s; }
+.trade-card:hover { background: var(--ink-2); }
+.trade-card .n { font-family: var(--display); font-size: 12px; color: var(--brass); }
+.trade-card h3 { font-size: 21px; font-weight: 600; margin: 40px 0 10px; letter-spacing: -.01em; }
+.trade-card p { color: var(--muted-dark); font-size: 15px; }
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .nav-links { display: none; }
+  .burger { display: block; }
+  .nav-right > .btn { display: none; }
+  .hero-sub { grid-template-columns: 1fr; gap: 28px; }
+  .sec-head, .about-grid, .core-grid, .contact .wrap { grid-template-columns: 1fr; gap: 28px; }
+  .pillars, .steps { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+  .pillar:nth-child(3), .step:nth-child(3) { padding-left: 0; border-left: 0; }
+  .area { grid-template-columns: 60px 1fr; }
+  .area-list { grid-column: 1 / -1; }
+  .trade-grid { grid-template-columns: 1fr 1fr; }
+  .core-feature { min-height: 420px; }
+}
+@media (max-width: 680px) {
+  body { font-size: 16px; }
+  .nav .logo span { display: none; }
+  .nav-right { gap: 10px; }
+  .hero { padding-top: 120px; }
+  .hero-sub { grid-template-columns: 1fr; gap: 28px; }
+  .cities { grid-template-columns: 1fr; padding-top: 48px; }
+  .city { padding: 18px 0; }
+  .city + .city { border-left: 0; padding-left: 0; border-top: 1px solid var(--line-dark); }
+  .pillars, .steps { grid-template-columns: 1fr; }
+  .pillar, .step, .pillar + .pillar, .step + .step { padding: 28px 0 0; border-left: 0; }
+  .pillar + .pillar, .step + .step { border-top: 1px solid var(--line); }
+  .area { grid-template-columns: 1fr; gap: 16px; padding: 36px 0; }
+  .area .n { padding-top: 0; }
+  .area-list { grid-template-columns: 1fr; gap: 20px; }
+  .card, .core-feature, form { padding: 26px; }
+  .row { grid-template-columns: 1fr; }
+  .compare, .trade-grid { grid-template-columns: 1fr; }
+  .compare-col, .trade-card { padding: 26px; }
+  .trade-card h3 { margin-top: 24px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="CLUBAR Consulting home"><b>CLUBAR</b><span>Consulting</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about"><span lang="en">About</span><span lang="es">Nosotros</span></a>
+      <a href="#trade">Trade Marketing</a>
+      <a href="#services"><span lang="en">Services</span><span lang="es">Servicios</span></a>
+      <a href="#process"><span lang="en">Process</span><span lang="es">Proceso</span></a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <a href="#contact" class="btn btn-brass"><span lang="en">Let's talk</span><span lang="es">Hablemos</span></a>
+      <button type="button" class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
+    <a href="#about"><span lang="en">About</span><span lang="es">Nosotros</span></a>
+    <a href="#trade">Trade Marketing</a>
+    <a href="#services"><span lang="en">Services</span><span lang="es">Servicios</span></a>
+    <a href="#process"><span lang="en">Process</span><span lang="es">Proceso</span></a>
+    <a href="#contact" class="btn btn-brass"><span lang="en">Let's talk</span><span lang="es">Hablemos</span></a>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <span class="eyebrow">Clubs · Bars · Restaurants</span>
+      <h1 id="hero-title">
+        <span lang="en">We don't just market venues. We <em>run</em> them.</span>
+        <span lang="es">No solo hacemos marketing. <em>Operamos</em> locales.</span>
+      </h1>
+      <div class="hero-sub">
+        <p>
+          <span lang="en">Marketing, trade marketing and operations for clubs, bars and restaurants. Every strategy is proven on the floor, behind the bar and in the profit and loss.</span>
+          <span lang="es">Marketing, trade marketing y operaciones para clubs, bares y restaurantes. Cada estrategia está probada en sala, en barra y en la cuenta de resultados.</span>
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-brass"><span lang="en">Book a consultation</span><span lang="es">Agenda una consulta</span> <span class="arr" aria-hidden="true">→</span></a>
+          <a href="#services" class="btn btn-ghost"><span lang="en">Our services</span><span lang="es">Servicios</span></a>
+        </div>
+      </div>
+      <div class="cities">
+        <div class="city"><div><h3>New York</h3><small>NYC · USA</small></div></div>
+        <div class="city"><div><h3><span lang="en">Mexico City</span><span lang="es">Ciudad de México</span></h3><small>CDMX · MX</small></div></div>
+        <div class="city"><div><h3>Madrid</h3><small>MAD · ES</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <span class="eyebrow reveal"><span lang="en">Operators, not just an agency</span><span lang="es">Operadores, no solo una agencia</span></span>
+      <div class="about-grid" style="margin-top:28px">
+        <h2 id="about-title" class="about-lead reveal">
+          <span lang="en">We're club, bar and restaurant <em>owners</em>, just like you.</span>
+          <span lang="es">Somos dueños de clubs, bares y restaurantes, <em>igual que tú</em>.</span>
+        </h2>
+        <p class="reveal">
+          <span lang="en">We know what a slow Tuesday feels like and why a great Instagram doesn't pay the rent on its own. So we work on the whole business, not just the likes.</span>
+          <span lang="es">Sabemos lo que es un martes flojo y por qué un buen Instagram no paga el alquiler por sí solo. Por eso trabajamos el negocio completo, no solo los likes.</span>
+        </p>
+      </div>
+
+      <div class="compare reveal">
+        <div class="compare-col">
+          <h3><span lang="en">A typical marketing agency</span><span lang="es">Una agencia de marketing típica</span></h3>
+          <ul>
+            <li><span lang="en">Measures likes and reach</span><span lang="es">Mide likes y alcance</span></li>
+            <li><span lang="en">Stops at the screen</span><span lang="es">Se queda en la pantalla</span></li>
+            <li><span lang="en">Sends a report and moves on</span><span lang="es">Envía un informe y ya</span></li>
+          </ul>
+        </div>
+        <div class="compare-col us">
+          <h3>CLUBAR</h3>
+          <ul>
+            <li><span lang="en">Measures covers, average check and margin</span><span lang="es">Mide cubiertos, ticket medio y margen</span></li>
+            <li><span lang="en">Works inside the venue: menu, staff and events</span><span lang="es">Trabaja dentro del local: carta, equipo y eventos</span></li>
+            <li><span lang="en">Sits at the table with you every month</span><span lang="es">Se sienta contigo a la mesa cada mes</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trade marketing -->
+  <section class="dark trade" id="trade" aria-labelledby="trade-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow reveal">Trade Marketing</span>
+          <h2 id="trade-title" class="reveal" style="margin-top:20px"><span lang="en">Growth that happens <em>inside</em> the venue.</span><span lang="es">El crecimiento que pasa <em>dentro</em> del local.</span></h2>
+        </div>
+        <p class="reveal"><span lang="en">Marketing brings guests to the door. Trade marketing decides what they order, how much they spend and whether they come back.</span><span lang="es">El marketing trae al cliente hasta la puerta. El trade marketing decide qué pide, cuánto gasta y si vuelve.</span></p>
+      </div>
+      <div class="trade-grid">
+        <div class="trade-card reveal"><span class="n">01</span><h3><span lang="en">Brand partnerships</span><span lang="es">Alianzas con marcas</span></h3><p><span lang="en">Sponsorships, co-funded activations and supplier deals with beverage brands.</span><span lang="es">Patrocinios, activaciones cofinanciadas y acuerdos con marcas de bebidas.</span></p></div>
+        <div class="trade-card reveal"><span class="n">02</span><h3><span lang="en">Menu &amp; drinks engineering</span><span lang="es">Ingeniería de carta</span></h3><p><span lang="en">Design, pricing and placement that push high-margin products.</span><span lang="es">Diseño, precios y ubicación que impulsan los productos de mayor margen.</span></p></div>
+        <div class="trade-card reveal"><span class="n">03</span><h3><span lang="en">In-venue activations</span><span lang="es">Activaciones en local</span></h3><p><span lang="en">Promotions, themed nights, tastings and launches.</span><span lang="es">Promociones, noches temáticas, catas y lanzamientos.</span></p></div>
+        <div class="trade-card reveal"><span class="n">04</span><h3><span lang="en">Point of sale</span><span lang="es">Punto de venta</span></h3><p><span lang="en">Back bar, table and in-venue materials that sell for you.</span><span lang="es">Contrabarra, mesa y materiales que venden por ti.</span></p></div>
+        <div class="trade-card reveal"><span class="n">05</span><h3><span lang="en">Sales &amp; upselling</span><span lang="es">Venta y upselling</span></h3><p><span lang="en">Teams trained to recommend, upsell and raise the average check.</span><span lang="es">Equipos formados para recomendar, hacer upselling y subir el ticket medio.</span></p></div>
+        <div class="trade-card reveal"><span class="n">06</span><h3><span lang="en">Promoters &amp; private events</span><span lang="es">RRPP y eventos privados</span></h3><p><span lang="en">Promoter teams, guest lists, and private and corporate events.</span><span lang="es">Equipos de relaciones públicas, listas y eventos privados y corporativos.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core service -->
+  <section class="core" id="services" aria-labelledby="core-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow reveal"><span lang="en">Core service</span><span lang="es">Servicio principal</span></span>
+          <h2 id="core-title" class="reveal" style="margin-top:20px"><span lang="en">Social media, fully managed.</span><span lang="es">Redes sociales, gestionadas por completo.</span></h2>
+        </div>
+        <p class="reveal"><span lang="en">One monthly program: strategy, production and reporting.</span><span lang="es">Un programa mensual: estrategia, producción y reporting.</span></p>
+      </div>
+      <div class="core-grid">
+        <div class="core-feature reveal">
+          <div>
+            <span class="eyebrow">Community Management</span>
+            <h3><span lang="en">Content that fills <em>tables</em>, not just feeds.</span><span lang="es">Contenido que llena <em>mesas</em>, no solo feeds.</span></h3>
+          </div>
+          <div class="tags">
+            <span class="tag">Instagram</span><span class="tag">Facebook</span><span class="tag">TikTok</span>
+            <span class="tag"><span lang="en">Graphic design</span><span lang="es">Diseño gráfico</span></span>
+            <span class="tag">Reels / TikToks</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <ul class="deliverables">
+            <li><span class="n">01</span><div><h4><span lang="en">Account management</span><span lang="es">Gestión de cuentas</span></h4><p><span lang="en">Instagram, Facebook and TikTok.</span><span lang="es">Instagram, Facebook y TikTok.</span></p></div></li>
+            <li><span class="n">02</span><div><h4>Copywriting</h4><p><span lang="en">Copy written for each platform.</span><span lang="es">Textos adaptados a cada plataforma.</span></p></div></li>
+            <li><span class="n">03</span><div><h4><span lang="en">Content strategy</span><span lang="es">Estrategia de contenido</span></h4><p><span lang="en">Monthly editorial calendar.</span><span lang="es">Calendario editorial mensual.</span></p></div></li>
+            <li><span class="n">04</span><div><h4><span lang="en">Profile optimization</span><span lang="es">Optimización de perfiles</span></h4><p><span lang="en">Bios, links and calls to action.</span><span lang="es">Biografías, enlaces y llamadas a la acción.</span></p></div></li>
+            <li><span class="n">05</span><div><h4><span lang="en">Report &amp; review</span><span lang="es">Informe y seguimiento</span></h4><p><span lang="en">Monthly results, recommendations and a review meeting.</span><span lang="es">Resultados, recomendaciones y una reunión al mes.</span></p></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 360 -->
+  <section class="dark" id="360" aria-labelledby="areas-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow reveal">CLUBAR 360</span>
+          <h2 id="areas-title" class="reveal" style="margin-top:20px"><span lang="en">Beyond marketing: we operate too.</span><span lang="es">Más allá del marketing: también operamos.</span></h2>
+        </div>
+        <p class="reveal"><span lang="en">From the first ad a guest sees to the numbers you review at month end.</span><span lang="es">Desde el primer anuncio que ve un cliente hasta los números que revisas a fin de mes.</span></p>
+      </div>
+
+      <div class="areas">
+        <article class="area reveal">
+          <div class="n">01</div>
+          <h3>Marketing &amp; Performance</h3>
+          <div class="area-list">
+            <div><h4>Meta Ads &amp; Google Ads</h4><p><span lang="en">Campaigns that win guests and drive reservations.</span><span lang="es">Campañas que captan clientes y generan reservas.</span></p></div>
+            <div><h4>SEO &amp; Google Business</h4><p><span lang="en">Rank higher in local search and maps.</span><span lang="es">Mejor posicionamiento en buscadores y mapas.</span></p></div>
+            <div><h4>Landing Pages</h4><p><span lang="en">Pages built to turn visits into bookings.</span><span lang="es">Páginas que convierten visitas en reservas.</span></p></div>
+          </div>
+        </article>
+
+        <article class="area reveal">
+          <div class="n">02</div>
+          <h3><span lang="en">Technology &amp; Automation</span><span lang="es">Tecnología &amp; Automatización</span></h3>
+          <div class="area-list">
+            <div><h4><span lang="en">CRM &amp; loyalty</span><span lang="es">CRM y fidelización</span></h4><p><span lang="en">Organize guest data and drive repeat visits.</span><span lang="es">Organiza tu base de clientes y fomenta la recurrencia.</span></p></div>
+            <div><h4><span lang="en">Conversational agents</span><span lang="es">Agentes conversacionales</span></h4><p><span lang="en">Automated replies and bookings on WhatsApp and Instagram.</span><span lang="es">Respuestas y reservas automáticas en WhatsApp e Instagram.</span></p></div>
+            <div><h4><span lang="en">AI automation</span><span lang="es">Automatizaciones con IA</span></h4><p><span lang="en">Faster admin, sales and reporting.</span><span lang="es">Procesos administrativos, comerciales y de análisis más ágiles.</span></p></div>
+          </div>
+        </article>
+
+        <article class="area reveal">
+          <div class="n">03</div>
+          <h3><span lang="en">Finance &amp; Business Intelligence</span><span lang="es">Finanzas &amp; Business Intelligence</span></h3>
+          <div class="area-list">
+            <div><h4>Business Intelligence</h4><p><span lang="en">Dashboards for sales, costs, margins and KPIs.</span><span lang="es">Dashboards de ventas, costes, márgenes e indicadores.</span></p></div>
+            <div><h4>CFO as a Service</h4><p><span lang="en">Outsourced finance: profitability, budgets and forecasts.</span><span lang="es">Finanzas externas: rentabilidad, presupuestos y previsiones.</span></p></div>
+            <div><h4>Revenue Management</h4><p><span lang="en">Better occupancy, average check and pricing.</span><span lang="es">Mejor ocupación, ticket medio y precios.</span></p></div>
+          </div>
+        </article>
+
+        <article class="area reveal">
+          <div class="n">04</div>
+          <h3><span lang="en">Brand &amp; Content</span><span lang="es">Marca &amp; Contenido</span></h3>
+          <div class="area-list">
+            <div><h4><span lang="en">Photo &amp; video</span><span lang="es">Foto y vídeo</span></h4><p><span lang="en">Professional content of product, spaces and events.</span><span lang="es">Contenido profesional de producto, espacios y eventos.</span></p></div>
+            <div><h4><span lang="en">PR &amp; influencers</span><span lang="es">PR e influencers</span></h4><p><span lang="en">Media presence and creator collaborations.</span><span lang="es">Presencia en medios y colaboraciones con creadores.</span></p></div>
+          </div>
+        </article>
+
+        <article class="area reveal">
+          <div class="n">05</div>
+          <h3><span lang="en">Operations</span><span lang="es">Operaciones</span></h3>
+          <div class="area-list">
+            <div><h4><span lang="en">Operational audit</span><span lang="es">Auditoría operativa</span></h4><p><span lang="en">Processes, costs, service and guest experience, reviewed.</span><span lang="es">Revisión de procesos, costes, servicio y experiencia del cliente.</span></p></div>
+            <div><h4><span lang="en">Operations leadership</span><span lang="es">Dirección operativa</span></h4><p><span lang="en">Hands-on support to run a more efficient venue.</span><span lang="es">Acompañamiento para operar un local más eficiente.</span></p></div>
+            <div><h4><span lang="en">Team training</span><span lang="es">Formación de equipos</span></h4><p><span lang="en">Guest service and operating procedures.</span><span lang="es">Atención al cliente y procedimientos operativos.</span></p></div>
+            <div><h4><span lang="en">Glovo &amp; Uber Eats</span><span lang="es">Glovo y Uber Eats</span></h4><p><span lang="en">Delivery menu, pricing, promos and profitability.</span><span lang="es">Carta, precios, promociones y rentabilidad del delivery.</span></p></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Venues -->
+  <section class="statement" id="venues" aria-labelledby="venues-title">
+    <div class="wrap">
+      <span class="eyebrow reveal"><span lang="en">Venues we've worked with</span><span lang="es">Locales con los que hemos colaborado</span></span>
+      <p class="venues reveal" id="venues-title"><span class="venue">The Normal<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Quiero<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">La Nuit<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Studio<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Music For A While<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">La Bomba<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">La Victoria<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Her Name Was Carmen<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Public<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Ketchy Shuby<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Dalí<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Mr. Purple<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Blind Jaguar<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Liberty<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Aster Oyster<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Ohmen<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Dos Chingones<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Highlight Room<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">PHD<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Fleur Room<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">LAVO<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">TAO<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Zamanik<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Pony Milk<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Makeru Roll House<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Blue<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Armario<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Todos Santos<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Keli<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Los Amantes<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Chica Club<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Istar<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Rubicon<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Nómada<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Sala de Despecho<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Panthera<span class="dot" aria-hidden="true"> ·</span></span> <span class="venue">Villa Panthera</span>.</p>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process" id="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow reveal"><span lang="en">Process</span><span lang="es">Proceso</span></span>
+          <h2 id="process-title" class="reveal" style="margin-top:20px"><span lang="en">How we work with you.</span><span lang="es">Cómo trabajamos contigo.</span></h2>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="n">01</div><h3><span lang="en">Diagnose</span><span lang="es">Diagnóstico</span></h3><p><span lang="en">We audit your brand, channels, operation and numbers.</span><span lang="es">Auditamos marca, canales, operación y números.</span></p></div>
+        <div class="step reveal"><div class="n">02</div><h3><span lang="en">Plan</span><span lang="es">Estrategia</span></h3><p><span lang="en">A roadmap with clear priorities and goals.</span><span lang="es">Una hoja de ruta con prioridades y objetivos claros.</span></p></div>
+        <div class="step reveal"><div class="n">03</div><h3><span lang="en">Execute</span><span lang="es">Ejecución</span></h3><p><span lang="en">We work alongside your team, on screen and on the floor.</span><span lang="es">Trabajamos junto a tu equipo, en pantalla y en sala.</span></p></div>
+        <div class="step reveal"><div class="n">04</div><h3><span lang="en">Measure</span><span lang="es">Medición</span></h3><p><span lang="en">Monthly results and adjustments to keep improving.</span><span lang="es">Resultados y ajustes cada mes para seguir mejorando.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow"><span lang="en">Contact</span><span lang="es">Contacto</span></span>
+        <h2 id="contact-title"><span lang="en">Let's grow your <em>venue</em>.</span><span lang="es">Hagamos crecer tu <em>local</em>.</span></h2>
+        <p class="contact-lead"><span lang="en">Tell us about your venue. We'll come back with a first diagnosis, operator to operator.</span><span lang="es">Cuéntanos sobre tu local. Te responderemos con un primer diagnóstico, de operador a operador.</span></p>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="row">
+          <label><span lang="en">Name</span><span lang="es">Nombre</span><input name="name" required autocomplete="name"></label>
+          <label><span lang="en">Venue</span><span lang="es">Local</span><input name="venue" autocomplete="organization"></label>
+        </div>
+        <div class="row">
+          <label>Email<input name="email" type="email" required autocomplete="email"></label>
+          <label><span lang="en">City</span><span lang="es">Ciudad</span>
+            <select name="city">
+              <option>New York</option><option>Ciudad de México</option><option>Madrid</option><option lang="en">Other</option><option lang="es">Otra</option>
+            </select>
+          </label>
+        </div>
+        <label><span lang="en">Venue type</span><span lang="es">Tipo de local</span>
+          <select name="type"><option>Club</option><option>Bar</option><option lang="en">Restaurant</option><option lang="es">Restaurante</option><option lang="en">Group / multiple venues</option><option lang="es">Grupo / varios locales</option></select>
+        </label>
+        <label><span lang="en">What do you need?</span><span lang="es">¿Qué necesitas?</span><textarea name="message"></textarea></label>
+        <button class="btn btn-brass" type="submit"><span lang="en">Send inquiry</span><span lang="es">Enviar solicitud</span> <span class="arr" aria-hidden="true">→</span></button>
+        <p class="form-note"><span lang="en">We reply within one business day.</span><span lang="es">Respondemos en un día hábil.</span></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="logo"><b>CLUBAR</b><span>Consulting</span></a>
+    <span>Marketing · Trade Marketing · <span lang="en">Operations</span><span lang="es">Operaciones</span></span>
+    <span>New York · CDMX · Madrid</span>
+    <span>© <span id="yr"></span> CLUBAR Consulting</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Language
+  var root = document.documentElement;
+  var btns = document.querySelectorAll('.lang button');
+  function setLang(l) {
+    root.lang = l;
+    btns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === l ? 'true' : 'false'); });
+    try { localStorage.setItem('clubar-lang', l); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('clubar-lang'); } catch (e) {}
+  if (!saved && (navigator.language || '').toLowerCase().indexOf('es') === 0) saved = 'es';
+  if (saved) setLang(saved);
+  btns.forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
+
+  // Nav background on scroll
+  var nav = document.getElementById('nav');
+  function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // Mobile menu
+  var burger = document.getElementById('burger');
+  function setMenu(open) {
+    nav.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  burger.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 1000) setMenu(false); });
+
+  // In-page navigation: scroll to the section, leaving room for the fixed header
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      setMenu(false);
+      var y = id === 'top' ? 0 : target.getBoundingClientRect().top + window.pageYOffset - 72;
+      window.scrollTo({ top: y, behavior: reduceMotion ? 'auto' : 'smooth' });
+      try { history.replaceState(null, '', '#' + id); } catch (err) {}
+    });
+  });
+
+  // Reveal on scroll
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  } else { els.forEach(function (el) { el.classList.add('in'); }); }
+
+  // Contact form: opens the visitor's mail client (no backend yet)
+  var CONTACT_EMAIL = 'hello@clubarconsulting.com'; // TODO: replace with the real inbox
+  document.getElementById('contact-form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var f = ev.target;
+    if (!f.reportValidity()) return;
+    var d = new FormData(f);
+    var body = ['Name: ' + d.get('name'), 'Venue: ' + d.get('venue'), 'Email: ' + d.get('email'),
+      'City: ' + d.get('city'), 'Type: ' + d.get('type'), '', d.get('message')].join('\n');
+    window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('CLUBAR inquiry: ' + (d.get('venue') || d.get('name'))) + '&body=' + encodeURIComponent(body);
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
